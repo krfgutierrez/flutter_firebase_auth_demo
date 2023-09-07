@@ -20,6 +20,10 @@ This project utilizes Firebase CLI and FlutterFire to manage Firebase integratio
    - Take note of the port you selected, as this will be used to instruct Firebase to utilize the Authentication Emulator.
 6. Following the port configuration, Firebase will ask if you want to enable the Emulator UI. Type 'y' and press Enter, then specify the port for the Emulator UI. Enabling this feature allows you to access the Emulator page.
 7. Firebase will inquire if you'd like to download the emulators; type 'Y' and press 
+  
+You can check the Firebase Emulator by executing the command: firebase emulator:start. You will see an output similar to the image below:
+![Alt text](./docs/images/firebase-emulator-start.png "Firebase Emulator:Start Result")
+
 
 **Step 2: Generate Firebase Project Configuration File through FlutterFire**
 1. Execute the command: flutterfire configure.
