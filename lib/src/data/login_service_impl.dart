@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart';
-import 'package:flutter_firebase_auth_demo/src/data/login_service_error.dart';
+import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: LoginService)
@@ -11,7 +12,7 @@ class LoginServiceImpl implements LoginService {
   const LoginServiceImpl(this._auth);
 
   @override
-  Future<LoginServiceResult> execute(LoginServiceParams params) async {
+  Future<UserSession> execute(LoginServiceParams params) async {
     try {
       final LoginServiceParams(:email, :password) = params;
       final UserCredential(:credential, :user) = await _auth
@@ -24,11 +25,11 @@ class LoginServiceImpl implements LoginService {
         credential!;
         user!;
       }
-      return LoginServiceResult(
-        token: credential.accessToken!,
+      return UserSession(
+        accessToken: credential.accessToken!,
         uid: user.uid,
       );
-    } on LoginServiceException catch (_) {
+    } on AuthError catch (_) {
       rethrow;
     } on FirebaseAuthException catch (error) {
       // invalid-email: Thrown if the email address is not valid.
@@ -41,29 +42,29 @@ class LoginServiceImpl implements LoginService {
         case 'invalid-email':
         case 'user-not-found':
         case 'wrong-password':
-          throw InvalidCredentialException('Invalid ');
+          throw InvalidCredentialException();
         default:
-          throw LoginServiceException('ServerError',
+          throw AuthError('ServerError',
               ' Unhandled Firebase Auth error code ${error.code}');
       }
     } catch (error) {
-      throw LoginServiceException('ServerError', error.toString());
+      throw AuthError('ServerError', error.toString());
     }
   }
 
   @protected
-  LoginServiceException? validateCredentail(
+  AuthError? validateCredentail(
       AuthCredential? credential, User? user) {
     if (credential == null) {
-      return LoginServiceException('ServerError',
+      return AuthError('ServerError',
           'The property "credential" from Firebase Auth is null');
     }
     if (credential.accessToken == null) {
-      return LoginServiceException('ServerError',
+      return AuthError('ServerError',
           'The property "accessToken" from Firebase Auth is null');
     }
     if (user == null) {
-      return LoginServiceException(
+      return AuthError(
           'ServerError', 'The property "user" from Firebase Auth is null');
     }
     return null;
