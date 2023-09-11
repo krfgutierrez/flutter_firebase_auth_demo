@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart';
-import 'package:flutter_firebase_auth_demo/src/data/login_service_error.dart';
+import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:flutter_firebase_auth_demo/src/data/login_service_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -53,7 +54,7 @@ void main() {
       expect(
         result,
         equals(
-          const LoginServiceResult(token: 'access-token', uid: 'user-123'),
+          const UserSession(accessToken: 'access-token', uid: 'user-123'),
         ),
       );
     });
@@ -118,7 +119,7 @@ void main() {
 
         final LoginService loginService = LoginServiceImpl(auth);
         expect(() => loginService.execute(loginParams),
-            throwsA(isA<LoginServiceException>()));
+            throwsA(isA<AuthError>()));
       });
       test(
         'Unhandled exception',
@@ -130,7 +131,7 @@ void main() {
               .thenThrow(RangeError('Invalid range'));
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<LoginServiceException>()));
+              throwsA(isA<AuthError>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message == 'RangeError: Invalid range';
@@ -153,7 +154,7 @@ void main() {
 
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<LoginServiceException>()));
+              throwsA(isA<AuthError>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message ==
@@ -179,7 +180,7 @@ void main() {
 
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<LoginServiceException>()));
+              throwsA(isA<AuthError>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message ==
@@ -206,7 +207,7 @@ void main() {
 
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<LoginServiceException>()));
+              throwsA(isA<AuthError>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message ==
