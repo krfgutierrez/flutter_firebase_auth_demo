@@ -3,7 +3,7 @@ import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_use_case.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_cubit.dart';
+import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_bloc.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_event.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_state.dart';
 import 'package:flutter_test/flutter_test.dart';

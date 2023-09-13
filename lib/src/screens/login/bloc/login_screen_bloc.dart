@@ -4,6 +4,9 @@ import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_e
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_state.dart';
 import 'package:injectable/injectable.dart';
 
+export 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_event.dart';
+export 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_state.dart';
+
 @Injectable()
 class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
   final LoginUseCase _loginUseCase;
