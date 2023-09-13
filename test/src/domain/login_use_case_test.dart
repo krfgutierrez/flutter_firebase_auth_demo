@@ -32,7 +32,7 @@ void main() {
 
     test('Expect to throw an exception', () async {
       when(authRepository.login(credentials))
-          .thenThrow(AccountDisabledException());
+          .thenThrow(const AccountDisabledException());
       final useCase = LoginUseCase(authRepository);
       expect(() => useCase.execute(credentials),
           throwsA(isA<AccountDisabledException>()));

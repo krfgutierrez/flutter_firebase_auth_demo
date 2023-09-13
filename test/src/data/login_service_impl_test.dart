@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart';
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:flutter_firebase_auth_demo/src/data/login_service_impl.dart';

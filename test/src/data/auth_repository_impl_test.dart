@@ -28,7 +28,7 @@ void main() {
       const loginParams = LoginServiceParams('user@gmail.com', 'password123');
  
       when(loginService.execute(loginParams))
-          .thenThrow(InvalidCredentialException());
+          .thenThrow(const InvalidCredentialException());
 
       expect(
         () => loginService.execute(loginParams),

@@ -14,7 +14,7 @@ class GetUserServiceImpl implements GetUserService {
   Future<AppUser> execute(void params) async {
     final user = _auth.currentUser;
     if (user == null) {
-      throw UnauthenticatedException();
+      throw const UnauthenticatedException();
     }
     return AppUser(
       user.uid,

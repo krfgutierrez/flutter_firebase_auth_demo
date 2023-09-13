@@ -33,7 +33,7 @@ void main() {
     });
 
     test('Expect to throw UnauthorizedException', () async {
-      when(authRepository.getUser()).thenThrow(UnauthenticatedException());
+      when(authRepository.getUser()).thenThrow(const UnauthenticatedException());
       final useCase = GetUserUseCase(authRepository);
       expect(
         () => useCase.execute(null),

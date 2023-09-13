@@ -22,7 +22,7 @@ import 'domain/auth_repository.dart' as _i9;
 import 'domain/get_user_service.dart' as _i5;
 import 'domain/login_service.dart' as _i7;
 import 'domain/login_use_case.dart' as _i11;
-import 'screens/login/login_screen_cubit.dart' as _i12;
+import 'screens/login/bloc/login_screen_cubit.dart' as _i12;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt

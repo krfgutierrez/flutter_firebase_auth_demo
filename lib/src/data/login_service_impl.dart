@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+// ignore: unnecessary_import
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart';
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
@@ -38,11 +39,11 @@ class LoginServiceImpl implements LoginService {
       // wrong-password: Thrown if the password is invalid for the given email, or the account corresponding to the email does not have a password set.
       switch (error.code) {
         case 'user-disabled':
-          throw AccountDisabledException();
+          throw const AccountDisabledException();
         case 'invalid-email':
         case 'user-not-found':
         case 'wrong-password':
-          throw InvalidCredentialException();
+          throw const InvalidCredentialException();
         default:
           throw AuthError('ServerError',
               ' Unhandled Firebase Auth error code ${error.code}');
@@ -56,15 +57,15 @@ class LoginServiceImpl implements LoginService {
   AuthError? validateCredentail(
       AuthCredential? credential, User? user) {
     if (credential == null) {
-      return AuthError('ServerError',
+      return const AuthError('ServerError',
           'The property "credential" from Firebase Auth is null');
     }
     if (credential.accessToken == null) {
-      return AuthError('ServerError',
+      return const AuthError('ServerError',
           'The property "accessToken" from Firebase Auth is null');
     }
     if (user == null) {
-      return AuthError(
+      return const AuthError(
           'ServerError', 'The property "user" from Firebase Auth is null');
     }
     return null;

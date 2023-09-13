@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_use_case.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/login_screen_event.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/login_screen_state.dart';
+import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_event.dart';
+import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_state.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()
