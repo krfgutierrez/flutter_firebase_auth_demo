@@ -74,5 +74,25 @@ void main() {
         ),
       ],
     );
+
+    blocTest<LoginScreenBloc, LoginScreenState>(
+      'Login failed, expect to emit [processing, authenticated] '
+      'when login reattempted and was successful',
+      build: () => bloc,
+      seed: () {
+        return LoginScreenState.failed(const InvalidCredentialException());
+      },
+      act: (bloc) {
+        when(useCase.execute(credentails)).thenAnswer((_) async => session);
+        bloc.add(LoginScreenEvent.submit(credentails));
+      },
+      verify: (_) {
+        verify(useCase.execute(credentails)).called(1);
+      },
+      expect: () => <LoginScreenState>[
+        LoginScreenState.processing(),
+        LoginScreenState.success(session),
+      ],
+    );
   });
 }
