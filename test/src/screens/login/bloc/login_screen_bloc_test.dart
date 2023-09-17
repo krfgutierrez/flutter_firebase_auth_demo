@@ -20,7 +20,7 @@ void main() {
 
     final useCase = MockLoginUseCase();
     const session = UserSession(accessToken: 'access-token', uid: 'user123');
-    const credentails = AccountCredential('user@gmail.com', 'password123');
+    const credentials = AccountCredential('user@gmail.com', 'password123');
 
     setUp(() {
       bloc = LoginScreenBloc(useCase);
@@ -38,11 +38,11 @@ void main() {
       'Successful login expects to emit [processing, authenticated]',
       build: () => bloc,
       act: (bloc) {
-        when(useCase.execute(credentails)).thenAnswer((_) async => session);
-        bloc.add(LoginScreenEvent.submit(credentails));
+        when(useCase.execute(credentials)).thenAnswer((_) async => session);
+        bloc.add(LoginScreenEvent.submit(credentials));
       },
       verify: (_) {
-        verify(useCase.execute(credentails)).called(1);
+        verify(useCase.execute(credentials)).called(1);
       },
       expect: () => <dynamic>[
         LoginScreenState.processing(),
@@ -55,12 +55,12 @@ void main() {
       'Failed login expects to emit [processing, failed]',
       build: () => bloc,
       act: (bloc) {
-        when(useCase.execute(credentails))
+        when(useCase.execute(credentials))
             .thenThrow(const InvalidCredentialException());
-        bloc.add(LoginScreenEvent.submit(credentails));
+        bloc.add(LoginScreenEvent.submit(credentials));
       },
       verify: (_) {
-        verify(useCase.execute(credentails)).called(1);
+        verify(useCase.execute(credentials)).called(1);
       },
       expect: () => <dynamic>[
         LoginScreenState.processing(),
@@ -80,11 +80,11 @@ void main() {
         return LoginScreenState.failed(const InvalidCredentialException());
       },
       act: (bloc) {
-        when(useCase.execute(credentails)).thenAnswer((_) async => session);
-        bloc.add(LoginScreenEvent.submit(credentails));
+        when(useCase.execute(credentials)).thenAnswer((_) async => session);
+        bloc.add(LoginScreenEvent.submit(credentials));
       },
       verify: (_) {
-        verify(useCase.execute(credentails)).called(1);
+        verify(useCase.execute(credentials)).called(1);
       },
       expect: () => <LoginScreenState>[
         LoginScreenState.processing(),

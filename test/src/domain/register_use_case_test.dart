@@ -12,7 +12,7 @@ import 'register_use_case_test.mocks.dart';
 void main() {
   group('RegisterUseCase', () {
     final repository = MockAuthRepository();
-    const credentails = AccountCredential('user@gmail.com', 'password123');
+    const credentials = AccountCredential('user@gmail.com', 'password123');
 
     tearDown(() {
       reset(repository);
@@ -21,21 +21,21 @@ void main() {
     test('Expect to receive registere account after successful registration',
         () async {
       final mockRegisterResult =
-          RegisteredAccount('user123', credentails.username);
-      when(repository.register(credentails)).thenAnswer(
+          RegisteredAccount('user123', credentials.username);
+      when(repository.register(credentials)).thenAnswer(
         (_) async => mockRegisterResult,
       );
       final useCase = RegisterUseCase(repository);
-      final result = await useCase.execute(credentails);
+      final result = await useCase.execute(credentials);
       expect(result, equals(mockRegisterResult));
-      verify(repository.register(credentails)).called(1);
+      verify(repository.register(credentials)).called(1);
     });
 
     test('Expect an error when registration failed', () async {
-      when(repository.register(credentails))
+      when(repository.register(credentials))
           .thenThrow(const InvalidEmailException());
       final useCase = RegisterUseCase(repository);
-      expect(() => useCase.execute(credentails),
+      expect(() => useCase.execute(credentials),
           throwsA(isA<InvalidEmailException>()));
     });
   });

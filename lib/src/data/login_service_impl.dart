@@ -19,7 +19,7 @@ class LoginServiceImpl implements LoginService {
       final UserCredential(:credential, :user) = await _auth
           .signInWithEmailAndPassword(email: email, password: password);
 
-      final error = validateCredentail(credential, user);
+      final error = validateCredential(credential, user);
       if (error != null) {
         throw error;
       } else {
@@ -54,7 +54,7 @@ class LoginServiceImpl implements LoginService {
   }
 
   @protected
-  AuthenticationException? validateCredentail(
+  AuthenticationException? validateCredential(
       AuthCredential? credential, User? user) {
     if (credential == null) {
       return const AuthenticationException('ServerError',

@@ -1223,18 +1223,18 @@ class MockUser extends _i1.Mock implements _i4.User {
 class MockAuthRepository extends _i1.Mock implements _i9.AuthRepository {
   @override
   _i8.Future<_i5.RegisteredAccount> register(
-          _i10.AccountCredential? credentail) =>
+          _i10.AccountCredential? credential) =>
       (super.noSuchMethod(
         Invocation.method(
           #register,
-          [credentail],
+          [credential],
         ),
         returnValue:
             _i8.Future<_i5.RegisteredAccount>.value(_FakeRegisteredAccount_8(
           this,
           Invocation.method(
             #register,
-            [credentail],
+            [credential],
           ),
         )),
         returnValueForMissingStub:
@@ -1242,22 +1242,22 @@ class MockAuthRepository extends _i1.Mock implements _i9.AuthRepository {
           this,
           Invocation.method(
             #register,
-            [credentail],
+            [credential],
           ),
         )),
       ) as _i8.Future<_i5.RegisteredAccount>);
   @override
-  _i8.Future<_i6.UserSession> login(_i10.AccountCredential? credentail) =>
+  _i8.Future<_i6.UserSession> login(_i10.AccountCredential? credential) =>
       (super.noSuchMethod(
         Invocation.method(
           #login,
-          [credentail],
+          [credential],
         ),
         returnValue: _i8.Future<_i6.UserSession>.value(_FakeUserSession_9(
           this,
           Invocation.method(
             #login,
-            [credentail],
+            [credential],
           ),
         )),
         returnValueForMissingStub:
@@ -1265,7 +1265,7 @@ class MockAuthRepository extends _i1.Mock implements _i9.AuthRepository {
           this,
           Invocation.method(
             #login,
-            [credentail],
+            [credential],
           ),
         )),
       ) as _i8.Future<_i6.UserSession>);

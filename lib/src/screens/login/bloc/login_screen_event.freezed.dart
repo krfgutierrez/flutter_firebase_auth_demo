@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginScreenEvent {
-  AccountCredential get credentail => throw _privateConstructorUsedError;
+  AccountCredential get credential => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AccountCredential credentail) submit,
+    required TResult Function(AccountCredential credential) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AccountCredential credentail)? submit,
+    TResult? Function(AccountCredential credential)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AccountCredential credentail)? submit,
+    TResult Function(AccountCredential credential)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ abstract class $LoginScreenEventCopyWith<$Res> {
           LoginScreenEvent value, $Res Function(LoginScreenEvent) then) =
       _$LoginScreenEventCopyWithImpl<$Res, LoginScreenEvent>;
   @useResult
-  $Res call({AccountCredential credentail});
+  $Res call({AccountCredential credential});
 }
 
 /// @nodoc
@@ -77,12 +77,12 @@ class _$LoginScreenEventCopyWithImpl<$Res, $Val extends LoginScreenEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? credentail = null,
+    Object? credential = null,
   }) {
     return _then(_value.copyWith(
-      credentail: null == credentail
-          ? _value.credentail
-          : credentail // ignore: cast_nullable_to_non_nullable
+      credential: null == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
               as AccountCredential,
     ) as $Val);
   }
@@ -96,7 +96,7 @@ abstract class _$$LoginScreenSubmitEventCopyWith<$Res>
       __$$LoginScreenSubmitEventCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AccountCredential credentail});
+  $Res call({AccountCredential credential});
 }
 
 /// @nodoc
@@ -110,12 +110,12 @@ class __$$LoginScreenSubmitEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? credentail = null,
+    Object? credential = null,
   }) {
     return _then(_$LoginScreenSubmitEvent(
-      null == credentail
-          ? _value.credentail
-          : credentail // ignore: cast_nullable_to_non_nullable
+      null == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
               as AccountCredential,
     ));
   }
@@ -124,14 +124,14 @@ class __$$LoginScreenSubmitEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
-  _$LoginScreenSubmitEvent(this.credentail);
+  _$LoginScreenSubmitEvent(this.credential);
 
   @override
-  final AccountCredential credentail;
+  final AccountCredential credential;
 
   @override
   String toString() {
-    return 'LoginScreenEvent.submit(credentail: $credentail)';
+    return 'LoginScreenEvent.submit(credential: $credential)';
   }
 
   @override
@@ -139,12 +139,12 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginScreenSubmitEvent &&
-            (identical(other.credentail, credentail) ||
-                other.credentail == credentail));
+            (identical(other.credential, credential) ||
+                other.credential == credential));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, credentail);
+  int get hashCode => Object.hash(runtimeType, credential);
 
   @JsonKey(ignore: true)
   @override
@@ -156,27 +156,27 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AccountCredential credentail) submit,
+    required TResult Function(AccountCredential credential) submit,
   }) {
-    return submit(credentail);
+    return submit(credential);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AccountCredential credentail)? submit,
+    TResult? Function(AccountCredential credential)? submit,
   }) {
-    return submit?.call(credentail);
+    return submit?.call(credential);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AccountCredential credentail)? submit,
+    TResult Function(AccountCredential credential)? submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(credentail);
+      return submit(credential);
     }
     return orElse();
   }
@@ -211,11 +211,11 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
 }
 
 abstract class LoginScreenSubmitEvent implements LoginScreenEvent {
-  factory LoginScreenSubmitEvent(final AccountCredential credentail) =
+  factory LoginScreenSubmitEvent(final AccountCredential credential) =
       _$LoginScreenSubmitEvent;
 
   @override
-  AccountCredential get credentail;
+  AccountCredential get credential;
   @override
   @JsonKey(ignore: true)
   _$$LoginScreenSubmitEventCopyWith<_$LoginScreenSubmitEvent> get copyWith =>

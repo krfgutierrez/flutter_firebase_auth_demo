@@ -39,12 +39,12 @@ void main() {
           password: password,
         ),
       ).thenAnswer((_) async {
-        final credentails = MockUserCredential();
-        when(credentails.credential).thenReturn(authCredential);
+        final credentials = MockUserCredential();
+        when(credentials.credential).thenReturn(authCredential);
         when(user.uid).thenReturn(uid);
         when(user.email).thenReturn(email);
-        when(credentails.user).thenReturn(user);
-        return credentails;
+        when(credentials.user).thenReturn(user);
+        return credentials;
       });
       final result = await service.execute(params);
       verify(
