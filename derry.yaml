@@ -7,14 +7,17 @@ test:coverage:generate:
   - genhtml ./coverage/lcov.info -o ./coverage/html
 test:coverage:show:
   - open ./coverage/html/index.html
+tcs:
+  - derry test:coverage:show
 test:complete:
   - derry test
   - derry test:coverage
   - derry test:coverage:generate
 tc:
   - derry test:complete
-tcs:
-  - derry test:coverage:show
+test:complete:show:
+  - derry tc
+  - derry tcs
 run:build_runner:
   - dart run build_runner build
 run:build_runner:clean:

@@ -30,7 +30,7 @@ class LoginServiceImpl implements LoginService {
         accessToken: credential.accessToken!,
         uid: user.uid,
       );
-    } on AuthError catch (_) {
+    } on AuthenticationException catch (_) {
       rethrow;
     } on FirebaseAuthException catch (error) {
       // invalid-email: Thrown if the email address is not valid.
@@ -45,27 +45,27 @@ class LoginServiceImpl implements LoginService {
         case 'wrong-password':
           throw const InvalidCredentialException();
         default:
-          throw AuthError('ServerError',
+          throw AuthenticationException('ServerError',
               ' Unhandled Firebase Auth error code ${error.code}');
       }
     } catch (error) {
-      throw AuthError('ServerError', error.toString());
+      throw AuthenticationException('ServerError', error.toString());
     }
   }
 
   @protected
-  AuthError? validateCredentail(
+  AuthenticationException? validateCredentail(
       AuthCredential? credential, User? user) {
     if (credential == null) {
-      return const AuthError('ServerError',
+      return const AuthenticationException('ServerError',
           'The property "credential" from Firebase Auth is null');
     }
     if (credential.accessToken == null) {
-      return const AuthError('ServerError',
+      return const AuthenticationException('ServerError',
           'The property "accessToken" from Firebase Auth is null');
     }
     if (user == null) {
-      return const AuthError(
+      return const AuthenticationException(
           'ServerError', 'The property "user" from Firebase Auth is null');
     }
     return null;

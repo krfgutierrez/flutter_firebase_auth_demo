@@ -5,9 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart'
-    as _i5;
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
+import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart'
     as _i2;
 import 'package:flutter_firebase_auth_demo/src/domain/login_use_case.dart'
     as _i3;
@@ -39,7 +37,7 @@ class _FakeUserSession_0 extends _i1.SmartFake implements _i2.UserSession {
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginUseCase extends _i1.Mock implements _i3.LoginUseCase {
   @override
-  _i4.Future<_i2.UserSession> execute(_i5.UserCredentail? params) =>
+  _i4.Future<_i2.UserSession> execute(_i2.UserCredentail? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
@@ -90,7 +88,7 @@ class MockUserSession extends _i1.Mock implements _i2.UserSession {
 /// A class which mocks [UserCredentail].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserCredentail extends _i1.Mock implements _i5.UserCredentail {
+class MockUserCredentail extends _i1.Mock implements _i2.UserCredentail {
   @override
   String get username => (super.noSuchMethod(
         Invocation.getter(#username),
