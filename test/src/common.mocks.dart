@@ -11,10 +11,10 @@ import 'package:firebase_auth_platform_interface/firebase_auth_platform_interfac
 import 'package:firebase_core/firebase_core.dart' as _i2;
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart'
     as _i9;
+import 'package:flutter_firebase_auth_demo/src/domain/entities/account_credential.dart'
+    as _i10;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_account.dart'
     as _i5;
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart'
-    as _i10;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
     as _i6;
 import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart'

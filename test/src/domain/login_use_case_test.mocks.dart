@@ -7,10 +7,10 @@ import 'dart:async' as _i6;
 
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart'
     as _i5;
+import 'package:flutter_firebase_auth_demo/src/domain/entities/account_credential.dart'
+    as _i7;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_account.dart'
     as _i2;
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart'
-    as _i7;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
     as _i3;
 import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart'

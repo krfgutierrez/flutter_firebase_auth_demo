@@ -1,11 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart';
+import 'package:flutter_firebase_auth_demo/src/domain/entities/account_credential.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_use_case.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_bloc.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_event.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -13,7 +11,6 @@ import 'package:mockito/mockito.dart';
 @GenerateNiceMocks([
   MockSpec<LoginUseCase>(),
   MockSpec<UserSession>(),
-  MockSpec<AccountCredential>()
 ])
 import 'login_screen_bloc_test.mocks.dart';
 
