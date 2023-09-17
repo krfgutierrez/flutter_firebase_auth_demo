@@ -118,7 +118,7 @@ void main() {
 
         final LoginService loginService = LoginServiceImpl(auth);
         expect(() => loginService.execute(loginParams),
-            throwsA(isA<AuthError>()));
+            throwsA(isA<AuthenticationException>()));
       });
       test(
         'Unhandled exception',
@@ -130,7 +130,7 @@ void main() {
               .thenThrow(RangeError('Invalid range'));
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<AuthError>()));
+              throwsA(isA<AuthenticationException>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message == 'RangeError: Invalid range';
@@ -139,7 +139,7 @@ void main() {
       );
 
       test(
-        'Credetials from Firebase Auth is null',
+        'Credentials from Firebase Auth is null',
         () async {
           const loginParams =
               LoginServiceParams('user@gmail.com', 'password123');
@@ -153,7 +153,7 @@ void main() {
 
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<AuthError>()));
+              throwsA(isA<AuthenticationException>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message ==
@@ -179,7 +179,7 @@ void main() {
 
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<AuthError>()));
+              throwsA(isA<AuthenticationException>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message ==
@@ -206,7 +206,7 @@ void main() {
 
           final LoginService service = LoginServiceImpl(auth);
           expect(() => service.execute(loginParams),
-              throwsA(isA<AuthError>()));
+              throwsA(isA<AuthenticationException>()));
           expect(() => service.execute(loginParams), throwsA((error) {
             return error.code == 'ServerError' &&
                 error.message ==

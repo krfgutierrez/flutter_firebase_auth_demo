@@ -1,27 +1,48 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter_firebase_auth_demo/src/data/base_exception.dart';
 
-class AuthError extends Equatable implements Exception {
-  final String code;
-  final String message;
-
-  const AuthError(this.code, this.message);
-
-  @override
-  List<Object?> get props => [code, message];
+class AuthenticationException extends BaseException {
+  const AuthenticationException(super.code, super.message);
 }
 
-class UnauthenticatedException extends AuthError {
+class UnauthenticatedException extends AuthenticationException {
   const UnauthenticatedException()
-      : super('Unauthenticated',
+      : // coverage:ignore-start
+        super('Unauthenticated',
             'User is not logged in or the session is alreadt expired.');
+            // coverage:ignore-end
 }
 
-class InvalidCredentialException extends AuthError {
+class InvalidCredentialException extends AuthenticationException {
   const InvalidCredentialException()
-      : super('InvalidCredential', 'Invalid username and/or password.');
+      : // coverage:ignore-start
+        super('InvalidCredential', 'Invalid username and/or password.');
+        // coverage:ignore-end
 }
 
-class AccountDisabledException extends AuthError {
+class AccountDisabledException extends AuthenticationException {
   const AccountDisabledException()
-      : super('AccountDisabled', 'Account is temporarily disabled.');
+      : // coverage:ignore-start
+        super('AccountDisabled', 'Account is temporarily disabled.');
+        // coverage:ignore-end
+}
+
+class EmailAlreadyInUseException extends AuthenticationException {
+  const EmailAlreadyInUseException()
+      : // coverage:ignore-start
+        super('EmailAlreadyInUsed', 'Email already in used.');
+        // coverage:ignore-end
+}
+
+class InvalidEmailException extends AuthenticationException {
+  const InvalidEmailException()
+      : // coverage:ignore-start
+        super('InvalidEmail', 'Invalid or unsupported email format.');
+        // coverage:ignore-end
+}
+
+class WeakPasswordException extends AuthenticationException {
+  const WeakPasswordException()
+      : // coverage:ignore-start
+        super('WeakPassword', 'Password is too weak.');
+        // coverage:ignore-end
 }

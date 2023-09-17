@@ -3,16 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart'
-    as _i4;
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart'
-    as _i6;
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
+    as _i5;
+import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_account.dart'
     as _i2;
-import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart'
+import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart'
+    as _i7;
+import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
     as _i3;
+import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -26,8 +28,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeUserSession_0 extends _i1.SmartFake implements _i2.UserSession {
-  _FakeUserSession_0(
+class _FakeRegisteredAccount_0 extends _i1.SmartFake
+    implements _i2.RegisteredAccount {
+  _FakeRegisteredAccount_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -36,8 +39,18 @@ class _FakeUserSession_0 extends _i1.SmartFake implements _i2.UserSession {
         );
 }
 
-class _FakeAppUser_1 extends _i1.SmartFake implements _i3.AppUser {
-  _FakeAppUser_1(
+class _FakeUserSession_1 extends _i1.SmartFake implements _i3.UserSession {
+  _FakeUserSession_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeAppUser_2 extends _i1.SmartFake implements _i4.AppUser {
+  _FakeAppUser_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -49,15 +62,39 @@ class _FakeAppUser_1 extends _i1.SmartFake implements _i3.AppUser {
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
   @override
-  _i5.Future<_i2.UserSession> login(_i6.UserCredentail? credentail) =>
+  _i6.Future<_i2.RegisteredAccount> register(_i7.UserCredentail? credentail) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #register,
+          [credentail],
+        ),
+        returnValue:
+            _i6.Future<_i2.RegisteredAccount>.value(_FakeRegisteredAccount_0(
+          this,
+          Invocation.method(
+            #register,
+            [credentail],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.RegisteredAccount>.value(_FakeRegisteredAccount_0(
+          this,
+          Invocation.method(
+            #register,
+            [credentail],
+          ),
+        )),
+      ) as _i6.Future<_i2.RegisteredAccount>);
+  @override
+  _i6.Future<_i3.UserSession> login(_i7.UserCredentail? credentail) =>
       (super.noSuchMethod(
         Invocation.method(
           #login,
           [credentail],
         ),
-        returnValue: _i5.Future<_i2.UserSession>.value(_FakeUserSession_0(
+        returnValue: _i6.Future<_i3.UserSession>.value(_FakeUserSession_1(
           this,
           Invocation.method(
             #login,
@@ -65,33 +102,33 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i2.UserSession>.value(_FakeUserSession_0(
+            _i6.Future<_i3.UserSession>.value(_FakeUserSession_1(
           this,
           Invocation.method(
             #login,
             [credentail],
           ),
         )),
-      ) as _i5.Future<_i2.UserSession>);
+      ) as _i6.Future<_i3.UserSession>);
   @override
-  _i5.Future<_i3.AppUser> getUser() => (super.noSuchMethod(
+  _i6.Future<_i4.AppUser> getUser() => (super.noSuchMethod(
         Invocation.method(
           #getUser,
           [],
         ),
-        returnValue: _i5.Future<_i3.AppUser>.value(_FakeAppUser_1(
+        returnValue: _i6.Future<_i4.AppUser>.value(_FakeAppUser_2(
           this,
           Invocation.method(
             #getUser,
             [],
           ),
         )),
-        returnValueForMissingStub: _i5.Future<_i3.AppUser>.value(_FakeAppUser_1(
+        returnValueForMissingStub: _i6.Future<_i4.AppUser>.value(_FakeAppUser_2(
           this,
           Invocation.method(
             #getUser,
             [],
           ),
         )),
-      ) as _i5.Future<_i3.AppUser>);
+      ) as _i6.Future<_i4.AppUser>);
 }

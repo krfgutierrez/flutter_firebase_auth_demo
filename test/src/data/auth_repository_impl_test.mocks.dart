@@ -3,18 +3,24 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
+import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_account.dart'
+    as _i4;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user.dart'
     as _i2;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
     as _i3;
 import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart'
-    as _i4;
+    as _i5;
 import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart'
-    as _i6;
-import 'package:flutter_firebase_auth_demo/src/domain/models/login_service_params.dart'
     as _i7;
+import 'package:flutter_firebase_auth_demo/src/domain/models/login_service_params.dart'
+    as _i8;
+import 'package:flutter_firebase_auth_demo/src/domain/models/registration_service_params.dart'
+    as _i10;
+import 'package:flutter_firebase_auth_demo/src/domain/registration_service.dart'
+    as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -48,45 +54,56 @@ class _FakeUserSession_1 extends _i1.SmartFake implements _i3.UserSession {
         );
 }
 
+class _FakeRegisteredAccount_2 extends _i1.SmartFake
+    implements _i4.RegisteredAccount {
+  _FakeRegisteredAccount_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [GetUserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUserService extends _i1.Mock implements _i4.GetUserService {
+class MockGetUserService extends _i1.Mock implements _i5.GetUserService {
   @override
-  _i5.Future<_i2.AppUser> execute(dynamic params) => (super.noSuchMethod(
+  _i6.Future<_i2.AppUser> execute(dynamic params) => (super.noSuchMethod(
         Invocation.method(
           #execute,
           [params],
         ),
-        returnValue: _i5.Future<_i2.AppUser>.value(_FakeAppUser_0(
+        returnValue: _i6.Future<_i2.AppUser>.value(_FakeAppUser_0(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-        returnValueForMissingStub: _i5.Future<_i2.AppUser>.value(_FakeAppUser_0(
+        returnValueForMissingStub: _i6.Future<_i2.AppUser>.value(_FakeAppUser_0(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-      ) as _i5.Future<_i2.AppUser>);
+      ) as _i6.Future<_i2.AppUser>);
 }
 
 /// A class which mocks [LoginService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginService extends _i1.Mock implements _i6.LoginService {
+class MockLoginService extends _i1.Mock implements _i7.LoginService {
   @override
-  _i5.Future<_i3.UserSession> execute(_i7.LoginServiceParams? params) =>
+  _i6.Future<_i3.UserSession> execute(_i8.LoginServiceParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [params],
         ),
-        returnValue: _i5.Future<_i3.UserSession>.value(_FakeUserSession_1(
+        returnValue: _i6.Future<_i3.UserSession>.value(_FakeUserSession_1(
           this,
           Invocation.method(
             #execute,
@@ -94,12 +111,44 @@ class MockLoginService extends _i1.Mock implements _i6.LoginService {
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i3.UserSession>.value(_FakeUserSession_1(
+            _i6.Future<_i3.UserSession>.value(_FakeUserSession_1(
           this,
           Invocation.method(
             #execute,
             [params],
           ),
         )),
-      ) as _i5.Future<_i3.UserSession>);
+      ) as _i6.Future<_i3.UserSession>);
+}
+
+/// A class which mocks [RegistrationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRegistrationService extends _i1.Mock
+    implements _i9.RegistrationService {
+  @override
+  _i6.Future<_i4.RegisteredAccount> execute(
+          _i10.RegistrationServiceParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [params],
+        ),
+        returnValue:
+            _i6.Future<_i4.RegisteredAccount>.value(_FakeRegisteredAccount_2(
+          this,
+          Invocation.method(
+            #execute,
+            [params],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i4.RegisteredAccount>.value(_FakeRegisteredAccount_2(
+          this,
+          Invocation.method(
+            #execute,
+            [params],
+          ),
+        )),
+      ) as _i6.Future<_i4.RegisteredAccount>);
 }
