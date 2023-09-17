@@ -12,7 +12,7 @@ import 'register_use_case_test.mocks.dart';
 void main() {
   group('RegisterUseCase', () {
     final repository = MockAuthRepository();
-    const credentails = UserCredentail('user@gmail.com', 'password123');
+    const credentails = AccountCredential('user@gmail.com', 'password123');
 
     tearDown(() {
       reset(repository);

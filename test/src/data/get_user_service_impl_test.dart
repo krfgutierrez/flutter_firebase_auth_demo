@@ -1,14 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:flutter_firebase_auth_demo/src/data/get_user_service_impl.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-@GenerateNiceMocks(
-    [MockSpec<firebase_auth.FirebaseAuth>(), MockSpec<firebase_auth.User>()])
-import 'get_user_service_impl_test.mocks.dart';
+import '../common.dart';
+
 
 void main() {
   group('GetUserServiceImpl', () {

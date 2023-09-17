@@ -3,16 +3,8 @@ import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart';
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:flutter_firebase_auth_demo/src/data/login_service_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-@GenerateNiceMocks([
-  MockSpec<FirebaseAuth>(),
-  MockSpec<UserCredential>(),
-  MockSpec<AuthCredential>(),
-  MockSpec<User>()
-])
-import 'login_service_impl_test.mocks.dart';
+import '../common.mocks.dart';
 
 void main() {
   group('LoginServiceImpl', () {

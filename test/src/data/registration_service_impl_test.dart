@@ -5,16 +5,9 @@ import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_accoun
 import 'package:flutter_firebase_auth_demo/src/domain/models/registration_service_params.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/registration_service.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import '../common.dart';
 
-@GenerateNiceMocks([
-  MockSpec<FirebaseAuth>(),
-  MockSpec<UserCredential>(),
-  MockSpec<AuthCredential>(),
-  MockSpec<User>(),
-])
-import 'registration_service_impl_test.mocks.dart';
 
 void main() {
   group('RegistrationServiceImpl', () {

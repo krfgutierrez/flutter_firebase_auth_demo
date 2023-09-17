@@ -37,7 +37,7 @@ class _FakeUserSession_0 extends _i1.SmartFake implements _i2.UserSession {
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginUseCase extends _i1.Mock implements _i3.LoginUseCase {
   @override
-  _i4.Future<_i2.UserSession> execute(_i2.UserCredentail? params) =>
+  _i4.Future<_i2.UserSession> execute(_i2.AccountCredential? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
@@ -88,7 +88,7 @@ class MockUserSession extends _i1.Mock implements _i2.UserSession {
 /// A class which mocks [UserCredentail].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserCredentail extends _i1.Mock implements _i2.UserCredentail {
+class MockUserCredentail extends _i1.Mock implements _i2.AccountCredential {
   @override
   String get username => (super.noSuchMethod(
         Invocation.getter(#username),

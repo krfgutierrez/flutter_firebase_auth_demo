@@ -3,13 +3,13 @@ import 'package:flutter_firebase_auth_demo/src/utils/executable.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class LoginUseCase extends Executable<UserCredentail, Future<UserSession>> {
+class LoginUseCase extends Executable<AccountCredential, Future<UserSession>> {
   final AuthRepository _authRepository;
 
   LoginUseCase(this._authRepository);
 
   @override
-  Future<UserSession> execute(UserCredentail params) async {
+  Future<UserSession> execute(AccountCredential params) async {
     return _authRepository.login(params);
   }
 }

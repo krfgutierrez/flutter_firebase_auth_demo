@@ -5,6 +5,6 @@ part 'login_screen_event.freezed.dart';
 
 @freezed
 class LoginScreenEvent with _$LoginScreenEvent {
-  factory LoginScreenEvent.submit(UserCredentail credentail) =
+  factory LoginScreenEvent.submit(AccountCredential credentail) =
       LoginScreenSubmitEvent;
 }

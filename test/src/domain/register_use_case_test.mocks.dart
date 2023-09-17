@@ -64,7 +64,8 @@ class _FakeAppUser_2 extends _i1.SmartFake implements _i4.AppUser {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
   @override
-  _i6.Future<_i2.RegisteredAccount> register(_i7.UserCredentail? credentail) =>
+  _i6.Future<_i2.RegisteredAccount> register(
+          _i7.AccountCredential? credentail) =>
       (super.noSuchMethod(
         Invocation.method(
           #register,
@@ -88,7 +89,7 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
         )),
       ) as _i6.Future<_i2.RegisteredAccount>);
   @override
-  _i6.Future<_i3.UserSession> login(_i7.UserCredentail? credentail) =>
+  _i6.Future<_i3.UserSession> login(_i7.AccountCredential? credentail) =>
       (super.noSuchMethod(
         Invocation.method(
           #login,

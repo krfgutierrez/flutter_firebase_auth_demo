@@ -13,7 +13,7 @@ import 'package:mockito/mockito.dart';
 @GenerateNiceMocks([
   MockSpec<LoginUseCase>(),
   MockSpec<UserSession>(),
-  MockSpec<UserCredentail>()
+  MockSpec<AccountCredential>()
 ])
 import 'login_screen_bloc_test.mocks.dart';
 
@@ -23,7 +23,7 @@ void main() {
 
     final useCase = MockLoginUseCase();
     const session = UserSession(accessToken: 'access-token', uid: 'user123');
-    const credentails = UserCredentail('user@gmail.com', 'password123');
+    const credentails = AccountCredential('user@gmail.com', 'password123');
 
     setUp(() {
       bloc = LoginScreenBloc(useCase);

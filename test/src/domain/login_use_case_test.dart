@@ -11,7 +11,7 @@ import 'login_use_case_test.mocks.dart';
 void main() {
   group('LoginUseCase', () {
     final authRepository = MockAuthRepository();
-    const credentials = UserCredentail('user@gmail.com', 'password123');
+    const credentials = AccountCredential('user@gmail.com', 'password123');
 
     tearDown(() {
       reset(authRepository);

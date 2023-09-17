@@ -23,7 +23,7 @@ void main() {
     final loginService = MockLoginService();
     final getUserService = MockGetUserService();
     final registerService = MockRegistrationService();
-    const credentials = UserCredentail('user@gmail.com', 'password123');
+    const credentials = AccountCredential('user@gmail.com', 'password123');
 
     tearDown(() {
       reset(loginService);

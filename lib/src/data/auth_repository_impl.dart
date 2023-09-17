@@ -24,14 +24,14 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<UserSession> login(UserCredentail credentail) async {
+  Future<UserSession> login(AccountCredential credentail) async {
     return _loginService.execute(
       LoginServiceParams(credentail.username, credentail.password),
     );
   }
 
   @override
-  Future<RegisteredAccount> register(UserCredentail credentail) {
+  Future<RegisteredAccount> register(AccountCredential credentail) {
     return _registrationService.execute(
       RegistrationServiceParams(credentail.username, credentail.password),
     );

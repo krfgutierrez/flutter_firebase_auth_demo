@@ -3,13 +3,13 @@ import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_accoun
 import 'package:flutter_firebase_auth_demo/src/utils/executable.dart';
 
 class RegisterUseCase
-    extends Executable<UserCredentail, Future<RegisteredAccount>> {
+    extends Executable<AccountCredential, Future<RegisteredAccount>> {
   final AuthRepository _repository;
 
   RegisterUseCase(this._repository);
 
   @override
-  Future<RegisteredAccount> execute(UserCredentail params) {
+  Future<RegisteredAccount> execute(AccountCredential params) {
     return _repository.register(params);
   }
 }
