@@ -1,11 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart';
+import 'package:flutter_firebase_auth_demo/src/domain/entities/account_credential.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_use_case.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_bloc.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_event.dart';
-import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -13,7 +11,6 @@ import 'package:mockito/mockito.dart';
 @GenerateNiceMocks([
   MockSpec<LoginUseCase>(),
   MockSpec<UserSession>(),
-  MockSpec<AccountCredential>()
 ])
 import 'login_screen_bloc_test.mocks.dart';
 
@@ -23,7 +20,7 @@ void main() {
 
     final useCase = MockLoginUseCase();
     const session = UserSession(accessToken: 'access-token', uid: 'user123');
-    const credentails = AccountCredential('user@gmail.com', 'password123');
+    const credentials = AccountCredential('user@gmail.com', 'password123');
 
     setUp(() {
       bloc = LoginScreenBloc(useCase);
@@ -41,11 +38,11 @@ void main() {
       'Successful login expects to emit [processing, authenticated]',
       build: () => bloc,
       act: (bloc) {
-        when(useCase.execute(credentails)).thenAnswer((_) async => session);
-        bloc.add(LoginScreenEvent.submit(credentails));
+        when(useCase.execute(credentials)).thenAnswer((_) async => session);
+        bloc.add(LoginScreenEvent.submit(credentials));
       },
       verify: (_) {
-        verify(useCase.execute(credentails)).called(1);
+        verify(useCase.execute(credentials)).called(1);
       },
       expect: () => <dynamic>[
         LoginScreenState.processing(),
@@ -58,12 +55,12 @@ void main() {
       'Failed login expects to emit [processing, failed]',
       build: () => bloc,
       act: (bloc) {
-        when(useCase.execute(credentails))
+        when(useCase.execute(credentials))
             .thenThrow(const InvalidCredentialException());
-        bloc.add(LoginScreenEvent.submit(credentails));
+        bloc.add(LoginScreenEvent.submit(credentials));
       },
       verify: (_) {
-        verify(useCase.execute(credentails)).called(1);
+        verify(useCase.execute(credentials)).called(1);
       },
       expect: () => <dynamic>[
         LoginScreenState.processing(),
@@ -83,11 +80,11 @@ void main() {
         return LoginScreenState.failed(const InvalidCredentialException());
       },
       act: (bloc) {
-        when(useCase.execute(credentails)).thenAnswer((_) async => session);
-        bloc.add(LoginScreenEvent.submit(credentails));
+        when(useCase.execute(credentials)).thenAnswer((_) async => session);
+        bloc.add(LoginScreenEvent.submit(credentials));
       },
       verify: (_) {
-        verify(useCase.execute(credentails)).called(1);
+        verify(useCase.execute(credentials)).called(1);
       },
       expect: () => <LoginScreenState>[
         LoginScreenState.processing(),

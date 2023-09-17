@@ -16,11 +16,11 @@ class RegistrationServiceImpl implements RegistrationService {
       final result = await _auth.createUserWithEmailAndPassword(
           email: params.email, password: params.password);
       final UserCredential(:user) = result;
-      final error = validateCredentail(user);
+      final error = validateCredential(user);
       if (error != null) {
         throw error;
       }
-      // user and user.email is validated within [validateCredentail]. This ensure both data are not null.
+      // user and user.email is validated within [validateCredential]. This ensure both data are not null.
       return RegisteredAccount(user!.uid, user.email!);
     } on AuthenticationException {
       rethrow;
@@ -48,7 +48,7 @@ class RegistrationServiceImpl implements RegistrationService {
   }
 
   @protected
-  AuthenticationException? validateCredentail(User? user) {
+  AuthenticationException? validateCredential(User? user) {
     if (user == null) {
       return const AuthenticationException(
           'ServerError', 'The property "user" from Firebase Auth is null');

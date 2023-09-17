@@ -84,21 +84,3 @@ class MockUserSession extends _i1.Mock implements _i2.UserSession {
         returnValueForMissingStub: <Object?>[],
       ) as List<Object?>);
 }
-
-/// A class which mocks [UserCredentail].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockUserCredentail extends _i1.Mock implements _i2.AccountCredential {
-  @override
-  String get username => (super.noSuchMethod(
-        Invocation.getter(#username),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-  @override
-  String get password => (super.noSuchMethod(
-        Invocation.getter(#password),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-}

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_screen_event.dart';
+part of 'register_screen_event.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LoginScreenEvent {
+mixin _$RegisterScreenEvent {
   AccountCredential get credential => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -35,39 +35,39 @@ mixin _$LoginScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginScreenSubmitEvent value) submit,
+    required TResult Function(RegisterScreenSubmitEvent value) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginScreenSubmitEvent value)? submit,
+    TResult? Function(RegisterScreenSubmitEvent value)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginScreenSubmitEvent value)? submit,
+    TResult Function(RegisterScreenSubmitEvent value)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LoginScreenEventCopyWith<LoginScreenEvent> get copyWith =>
+  $RegisterScreenEventCopyWith<RegisterScreenEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginScreenEventCopyWith<$Res> {
-  factory $LoginScreenEventCopyWith(
-          LoginScreenEvent value, $Res Function(LoginScreenEvent) then) =
-      _$LoginScreenEventCopyWithImpl<$Res, LoginScreenEvent>;
+abstract class $RegisterScreenEventCopyWith<$Res> {
+  factory $RegisterScreenEventCopyWith(
+          RegisterScreenEvent value, $Res Function(RegisterScreenEvent) then) =
+      _$RegisterScreenEventCopyWithImpl<$Res, RegisterScreenEvent>;
   @useResult
   $Res call({AccountCredential credential});
 }
 
 /// @nodoc
-class _$LoginScreenEventCopyWithImpl<$Res, $Val extends LoginScreenEvent>
-    implements $LoginScreenEventCopyWith<$Res> {
-  _$LoginScreenEventCopyWithImpl(this._value, this._then);
+class _$RegisterScreenEventCopyWithImpl<$Res, $Val extends RegisterScreenEvent>
+    implements $RegisterScreenEventCopyWith<$Res> {
+  _$RegisterScreenEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,22 +89,23 @@ class _$LoginScreenEventCopyWithImpl<$Res, $Val extends LoginScreenEvent>
 }
 
 /// @nodoc
-abstract class _$$LoginScreenSubmitEventCopyWith<$Res>
-    implements $LoginScreenEventCopyWith<$Res> {
-  factory _$$LoginScreenSubmitEventCopyWith(_$LoginScreenSubmitEvent value,
-          $Res Function(_$LoginScreenSubmitEvent) then) =
-      __$$LoginScreenSubmitEventCopyWithImpl<$Res>;
+abstract class _$$RegisterScreenSubmitEventCopyWith<$Res>
+    implements $RegisterScreenEventCopyWith<$Res> {
+  factory _$$RegisterScreenSubmitEventCopyWith(
+          _$RegisterScreenSubmitEvent value,
+          $Res Function(_$RegisterScreenSubmitEvent) then) =
+      __$$RegisterScreenSubmitEventCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AccountCredential credential});
 }
 
 /// @nodoc
-class __$$LoginScreenSubmitEventCopyWithImpl<$Res>
-    extends _$LoginScreenEventCopyWithImpl<$Res, _$LoginScreenSubmitEvent>
-    implements _$$LoginScreenSubmitEventCopyWith<$Res> {
-  __$$LoginScreenSubmitEventCopyWithImpl(_$LoginScreenSubmitEvent _value,
-      $Res Function(_$LoginScreenSubmitEvent) _then)
+class __$$RegisterScreenSubmitEventCopyWithImpl<$Res>
+    extends _$RegisterScreenEventCopyWithImpl<$Res, _$RegisterScreenSubmitEvent>
+    implements _$$RegisterScreenSubmitEventCopyWith<$Res> {
+  __$$RegisterScreenSubmitEventCopyWithImpl(_$RegisterScreenSubmitEvent _value,
+      $Res Function(_$RegisterScreenSubmitEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +113,7 @@ class __$$LoginScreenSubmitEventCopyWithImpl<$Res>
   $Res call({
     Object? credential = null,
   }) {
-    return _then(_$LoginScreenSubmitEvent(
+    return _then(_$RegisterScreenSubmitEvent(
       null == credential
           ? _value.credential
           : credential // ignore: cast_nullable_to_non_nullable
@@ -123,22 +124,22 @@ class __$$LoginScreenSubmitEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
-  _$LoginScreenSubmitEvent(this.credential);
+class _$RegisterScreenSubmitEvent implements RegisterScreenSubmitEvent {
+  _$RegisterScreenSubmitEvent(this.credential);
 
   @override
   final AccountCredential credential;
 
   @override
   String toString() {
-    return 'LoginScreenEvent.submit(credential: $credential)';
+    return 'RegisterScreenEvent.submit(credential: $credential)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginScreenSubmitEvent &&
+            other is _$RegisterScreenSubmitEvent &&
             (identical(other.credential, credential) ||
                 other.credential == credential));
   }
@@ -149,9 +150,9 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginScreenSubmitEventCopyWith<_$LoginScreenSubmitEvent> get copyWith =>
-      __$$LoginScreenSubmitEventCopyWithImpl<_$LoginScreenSubmitEvent>(
-          this, _$identity);
+  _$$RegisterScreenSubmitEventCopyWith<_$RegisterScreenSubmitEvent>
+      get copyWith => __$$RegisterScreenSubmitEventCopyWithImpl<
+          _$RegisterScreenSubmitEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -184,7 +185,7 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginScreenSubmitEvent value) submit,
+    required TResult Function(RegisterScreenSubmitEvent value) submit,
   }) {
     return submit(this);
   }
@@ -192,7 +193,7 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginScreenSubmitEvent value)? submit,
+    TResult? Function(RegisterScreenSubmitEvent value)? submit,
   }) {
     return submit?.call(this);
   }
@@ -200,7 +201,7 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginScreenSubmitEvent value)? submit,
+    TResult Function(RegisterScreenSubmitEvent value)? submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -210,14 +211,14 @@ class _$LoginScreenSubmitEvent implements LoginScreenSubmitEvent {
   }
 }
 
-abstract class LoginScreenSubmitEvent implements LoginScreenEvent {
-  factory LoginScreenSubmitEvent(final AccountCredential credential) =
-      _$LoginScreenSubmitEvent;
+abstract class RegisterScreenSubmitEvent implements RegisterScreenEvent {
+  factory RegisterScreenSubmitEvent(final AccountCredential credential) =
+      _$RegisterScreenSubmitEvent;
 
   @override
   AccountCredential get credential;
   @override
   @JsonKey(ignore: true)
-  _$$LoginScreenSubmitEventCopyWith<_$LoginScreenSubmitEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RegisterScreenSubmitEventCopyWith<_$RegisterScreenSubmitEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }

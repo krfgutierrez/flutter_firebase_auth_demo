@@ -7,10 +7,10 @@ import 'dart:async' as _i6;
 
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart'
     as _i5;
+import 'package:flutter_firebase_auth_demo/src/domain/entities/account_credential.dart'
+    as _i7;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_account.dart'
     as _i2;
-import 'package:flutter_firebase_auth_demo/src/domain/entities/user_credential.dart'
-    as _i7;
 import 'package:flutter_firebase_auth_demo/src/domain/entities/user_session.dart'
     as _i3;
 import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart'
@@ -65,18 +65,18 @@ class _FakeAppUser_2 extends _i1.SmartFake implements _i4.AppUser {
 class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
   @override
   _i6.Future<_i2.RegisteredAccount> register(
-          _i7.AccountCredential? credentail) =>
+          _i7.AccountCredential? credential) =>
       (super.noSuchMethod(
         Invocation.method(
           #register,
-          [credentail],
+          [credential],
         ),
         returnValue:
             _i6.Future<_i2.RegisteredAccount>.value(_FakeRegisteredAccount_0(
           this,
           Invocation.method(
             #register,
-            [credentail],
+            [credential],
           ),
         )),
         returnValueForMissingStub:
@@ -84,22 +84,22 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           this,
           Invocation.method(
             #register,
-            [credentail],
+            [credential],
           ),
         )),
       ) as _i6.Future<_i2.RegisteredAccount>);
   @override
-  _i6.Future<_i3.UserSession> login(_i7.AccountCredential? credentail) =>
+  _i6.Future<_i3.UserSession> login(_i7.AccountCredential? credential) =>
       (super.noSuchMethod(
         Invocation.method(
           #login,
-          [credentail],
+          [credential],
         ),
         returnValue: _i6.Future<_i3.UserSession>.value(_FakeUserSession_1(
           this,
           Invocation.method(
             #login,
-            [credentail],
+            [credential],
           ),
         )),
         returnValueForMissingStub:
@@ -107,7 +107,7 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           this,
           Invocation.method(
             #login,
-            [credentail],
+            [credential],
           ),
         )),
       ) as _i6.Future<_i3.UserSession>);

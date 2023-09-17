@@ -1,4 +1,5 @@
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart';
+import 'package:flutter_firebase_auth_demo/src/domain/entities/account_credential.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/entities/registered_account.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/get_user_service.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_service.dart';
@@ -24,16 +25,16 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<UserSession> login(AccountCredential credentail) async {
+  Future<UserSession> login(AccountCredential credential) async {
     return _loginService.execute(
-      LoginServiceParams(credentail.username, credentail.password),
+      LoginServiceParams(credential.username, credential.password),
     );
   }
 
   @override
-  Future<RegisteredAccount> register(AccountCredential credentail) {
+  Future<RegisteredAccount> register(AccountCredential credential) {
     return _registrationService.execute(
-      RegistrationServiceParams(credentail.username, credentail.password),
+      RegistrationServiceParams(credential.username, credential.password),
     );
   }
 }
