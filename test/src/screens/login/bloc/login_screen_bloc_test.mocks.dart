@@ -71,12 +71,14 @@ class MockUserSession extends _i1.Mock implements _i2.UserSession {
         returnValue: '',
         returnValueForMissingStub: '',
       ) as String);
+
   @override
   String get uid => (super.noSuchMethod(
         Invocation.getter(#uid),
         returnValue: '',
         returnValueForMissingStub: '',
       ) as String);
+
   @override
   List<Object?> get props => (super.noSuchMethod(
         Invocation.getter(#props),

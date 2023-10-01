@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/models/registration_use_case.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/register/bloc/register_screen_event.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/register/bloc/register_screen_state.dart';

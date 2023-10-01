@@ -88,6 +88,7 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           ),
         )),
       ) as _i6.Future<_i2.RegisteredAccount>);
+
   @override
   _i6.Future<_i3.UserSession> login(_i7.AccountCredential? credential) =>
       (super.noSuchMethod(
@@ -111,6 +112,7 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           ),
         )),
       ) as _i6.Future<_i3.UserSession>);
+
   @override
   _i6.Future<_i4.AppUser> getUser() => (super.noSuchMethod(
         Invocation.method(
