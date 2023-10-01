@@ -60,29 +60,3 @@ class MockLoginUseCase extends _i1.Mock implements _i3.LoginUseCase {
         )),
       ) as _i4.Future<_i2.UserSession>);
 }
-
-/// A class which mocks [UserSession].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockUserSession extends _i1.Mock implements _i2.UserSession {
-  @override
-  String get accessToken => (super.noSuchMethod(
-        Invocation.getter(#accessToken),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-
-  @override
-  String get uid => (super.noSuchMethod(
-        Invocation.getter(#uid),
-        returnValue: '',
-        returnValueForMissingStub: '',
-      ) as String);
-
-  @override
-  List<Object?> get props => (super.noSuchMethod(
-        Invocation.getter(#props),
-        returnValue: <Object?>[],
-        returnValueForMissingStub: <Object?>[],
-      ) as List<Object?>);
-}

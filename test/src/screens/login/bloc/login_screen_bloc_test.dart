@@ -10,7 +10,6 @@ import 'package:mockito/mockito.dart';
 
 @GenerateNiceMocks([
   MockSpec<LoginUseCase>(),
-  MockSpec<UserSession>(),
 ])
 import 'login_screen_bloc_test.mocks.dart';
 

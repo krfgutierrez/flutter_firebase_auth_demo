@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
-import 'package:flutter_firebase_auth_demo/src/data/base_exception.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_bloc.dart';
 import 'package:get_it/get_it.dart';
