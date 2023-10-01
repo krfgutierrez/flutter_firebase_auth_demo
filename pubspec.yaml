@@ -63,6 +63,9 @@ dev_dependencies:
   derry: ^1.5.0
   freezed: ^2.4.1
   bloc_test: ^9.1.4
+  # bloc_test is using this tool. 
+  # mocktail will be utilize to verify if bloc functions are triggered.
+  mocktail: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
