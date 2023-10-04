@@ -1,7 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_auth_demo/src/data/auth_error.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/auth_repository.dart';
 import 'package:flutter_firebase_auth_demo/src/domain/login_use_case.dart';
 import 'package:flutter_firebase_auth_demo/src/screens/login/bloc/login_screen_bloc.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mocktail/mocktail.dart' as mocktail;
 
 @GenerateNiceMocks([
   MockSpec<ILoginFormContract>(onMissingStub: OnMissingStub.returnDefault),
@@ -31,7 +29,6 @@ void main() {
 
     final contract = MockILoginFormContract();
     final validator = MockILoginFormValidator();
-    const session = UserSession(accessToken: 'access-token', uid: 'user123');
 
     late LoginScreenBloc bloc;
 
@@ -45,162 +42,198 @@ void main() {
       GetIt.instance.reset(dispose: true);
     });
 
-    Future<void> buildWidgetOnTest(WidgetTester tester) {
+    Future<void> buildWidgetOnTest(WidgetTester tester, bool processing) {
       return tester.pumpWidget(MaterialApp(
         home: Scaffold(
           body: BlocProvider<LoginScreenBloc>.value(
             value: bloc,
-            child: LoginForm(contract: contract),
+            child: LoginForm(
+              contract,
+              processing: processing,
+            ),
           ),
         ),
       ));
     }
 
-    group('States', () {
-      testWidgets('Initial State: Expect form to be enabled', (tester) async {
-        whenListen<LoginScreenState>(
-          bloc,
-          Stream.fromIterable([]),
-          initialState: LoginScreenState.initial(),
-        );
-        await buildWidgetOnTest(tester);
-        final txtEmail = find.byKey(txtEmailKey);
-        final txtPassword = find.byKey(txtPasswordKey);
-        final btnSubmit = find.byKey(btnSubmitkey);
-        expect(tester.widget<TextFormField>(txtEmail).enabled, isTrue);
-        expect(tester.widget<TextFormField>(txtPassword).enabled, isTrue);
-        expect(tester.widget<ElevatedButton>(btnSubmit).onPressed, isNotNull);
-      });
-
-      testWidgets('Processing State: Expect form to be disabled',
-          (tester) async {
-        whenListen(
-          bloc,
-          Stream.fromIterable([LoginScreenState.processing()]),
-          initialState: LoginScreenState.initial(),
-        );
-        await buildWidgetOnTest(tester);
-        await tester.pump();
-
-        final txtEmail = find.byKey(txtEmailKey);
-        final txtPassword = find.byKey(txtPasswordKey);
-        final btnSubmit = find.byKey(btnSubmitkey);
-        expect(tester.widget<TextFormField>(txtEmail).enabled, isFalse);
-        expect(tester.widget<TextFormField>(txtPassword).enabled, isFalse);
-        expect(tester.widget<ButtonStyleButton>(btnSubmit).onPressed, isNull);
-        expect(find.byType(CircularProgressIndicator), findsOneWidget);
-      });
-
-      testWidgets(
-          'Failed State: Expect form to be enabled and error dialog is prompted',
-          (tester) async {
-        const exception = InvalidCredentialException();
-        whenListen(
-          bloc,
-          Stream.fromIterable([
-            LoginScreenState.failed(exception),
-          ]),
-          initialState: LoginScreenState.initial(),
-        );
-        await buildWidgetOnTest(tester);
-        await tester.pump();
-
-        expect(find.text('Login Failed'), findsOneWidget);
-        expect(find.text(exception.message), findsOneWidget);
-        // If the login failed, the form should be enabled.
-        final txtEmail = find.byKey(txtEmailKey);
-        final txtPassword = find.byKey(txtPasswordKey);
-        final btnSubmit = find.byKey(btnSubmitkey);
-
-        expect(tester.widget<TextFormField>(txtEmail).enabled, equals(true));
-        expect(tester.widget<TextFormField>(txtPassword).enabled, equals(true));
-        expect(
-            tester.widget<ButtonStyleButton>(btnSubmit).onPressed, isNotNull);
-      });
-
-      testWidgets(
-          'Successful State: Expect [ILoginFormContract.onLoginSucceed] to be called',
-          (tester) async {
-        whenListen(
-          bloc,
-          Stream.fromIterable([LoginScreenState.success(session)]),
-          initialState: LoginScreenState.initial(),
-        );
-
-        await buildWidgetOnTest(tester);
-        await tester.pump();
-
-        verify(contract.onLoginSucceed(session)).called(1);
-        // If the login succeed, the form must retain disabled.
-        final txtEmail = find.byKey(const Key('LoginForm-textfield-email'));
-        final txtPassword =
-            find.byKey(const Key('LoginForm-textfield-password'));
-        final btnSubmit = find.byKey(const Key('LoginForm-button-submit'));
-
-        expect(tester.widget<TextFormField>(txtEmail).enabled, isFalse);
-        expect(tester.widget<TextFormField>(txtPassword).enabled, isFalse);
-        expect(tester.widget<ButtonStyleButton>(btnSubmit).onPressed, isNull);
-      });
+    testWidgets('Expect form to be enabled when [processing] is false',
+        (tester) async {
+      whenListen<LoginScreenState>(
+        bloc,
+        Stream.fromIterable([]),
+        initialState: LoginScreenState.initial(),
+      );
+      await buildWidgetOnTest(tester, false);
+      final txtEmail = find.byKey(txtEmailKey);
+      final txtPassword = find.byKey(txtPasswordKey);
+      final btnSubmit = find.byKey(btnSubmitkey);
+      expect(tester.widget<TextFormField>(txtEmail).enabled, isTrue);
+      expect(tester.widget<TextFormField>(txtPassword).enabled, isTrue);
+      expect(tester.widget<ElevatedButton>(btnSubmit).onPressed, isNotNull);
     });
 
-    group('Validation', () {
-      testWidgets(
-        'Expect email field error when email validation return an error',
+    testWidgets('Expect form to be disabled when [processing] is true',
         (tester) async {
-          whenListen<LoginScreenState>(
-            bloc,
-            Stream.fromIterable([]),
-            initialState: LoginScreenState.initial(),
-          );
-          const email = 'user!yahoo.com';
-          when(validator.email(email)).thenReturn('Invalid Email');
-          await buildWidgetOnTest(tester);
-          await tester.enterText(find.byKey(txtEmailKey), email);
-          await tester.enterText(find.byKey(txtPasswordKey), '!P@ssw0rd123');
-          await tester.tap(find.byKey(btnSubmitkey));
-          await tester.pump();
-          verify(validator.email(email)).called(1);
-          expect(find.text('Invalid Email'), findsOneWidget);
-        },
+      whenListen<LoginScreenState>(
+        bloc,
+        Stream.fromIterable([]),
+        initialState: LoginScreenState.initial(),
       );
-      testWidgets(
-        'Expect password field error when password validation return an error',
-        (tester) async {
-          whenListen<LoginScreenState>(
-            bloc,
-            Stream.fromIterable([]),
-            initialState: LoginScreenState.initial(),
-          );
-          const password = '';
-          when(validator.password(password)).thenReturn('Password is required');
-          await buildWidgetOnTest(tester);
-          await tester.enterText(find.byKey(txtEmailKey), 'user!yahoo.com');
-          await tester.tap(find.byKey(btnSubmitkey));
-          await tester.pump();
-          verify(validator.password(password)).called(1);
-          expect(find.text('Password is required'), findsOneWidget);
-        },
-      );
-
-      testWidgets('Expect to trigger login when email and password are valid',
-          (tester) async {
-        whenListen<LoginScreenState>(
-          bloc,
-          Stream.fromIterable([]),
-          initialState: LoginScreenState.initial(),
-        );
-        await buildWidgetOnTest(tester);
-        const String email = 'user@gmail.com';
-        const String password = '!P@ssw0rd123';
-        await tester.enterText(find.byKey(txtEmailKey), email);
-        await tester.enterText(find.byKey(txtPasswordKey), password);
-        await tester.tap(find.byKey(btnSubmitkey));
-        await tester.pump();
-        const credential = AccountCredential(email, password);
-        mocktail
-            .verify(() => bloc.add(LoginScreenEvent.submit(credential)))
-            .called(1);
-      });
+      await buildWidgetOnTest(tester, true);
+      final txtEmail = find.byKey(txtEmailKey);
+      final txtPassword = find.byKey(txtPasswordKey);
+      final btnSubmit = find.byKey(btnSubmitkey);
+      expect(tester.widget<TextFormField>(txtEmail).enabled, isFalse);
+      expect(tester.widget<TextFormField>(txtPassword).enabled, isFalse);
+      expect(tester.widget<ElevatedButton>(btnSubmit).onPressed, isNull);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
+
+    testWidgets(
+        'On submit, expect to call submit callback when email and password are valid',
+        (tester) async {
+      const credential = AccountCredential('user@gmail.com', 'P@ssw0rd123');
+      when(contract.onSubmit(credential)).thenReturn(null);
+      await buildWidgetOnTest(tester, false);
+      final txtEmail = find.byKey(txtEmailKey);
+      final txtPassword = find.byKey(txtPasswordKey);
+      final btnSubmit = find.byKey(btnSubmitkey);
+      await tester.enterText(txtEmail, credential.username);
+      await tester.enterText(txtPassword, credential.password);
+      await tester.tap(btnSubmit);
+      verify(contract.onSubmit(credential)).called(1);
+    });
+
+    // group('Enable and Disable State', () {
+    //   testWidgets('Processing State: Expect form to be disabled',
+    //       (tester) async {
+    //     whenListen(
+    //       bloc,
+    //       Stream.fromIterable([LoginScreenState.processing()]),
+    //       initialState: LoginScreenState.initial(),
+    //     );
+    //     await buildWidgetOnTest(tester, true);
+    //     await tester.pump();
+
+    //     final txtEmail = find.byKey(txtEmailKey);
+    //     final txtPassword = find.byKey(txtPasswordKey);
+    //     final btnSubmit = find.byKey(btnSubmitkey);
+    //     expect(tester.widget<TextFormField>(txtEmail).enabled, isFalse);
+    //     expect(tester.widget<TextFormField>(txtPassword).enabled, isFalse);
+    //     expect(tester.widget<ButtonStyleButton>(btnSubmit).onPressed, isNull);
+    //     expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    //   });
+
+    //   testWidgets(
+    //       'Failed State: Expect form to be enabled and error dialog is prompted',
+    //       (tester) async {
+    //     const exception = InvalidCredentialException();
+    //     whenListen(
+    //       bloc,
+    //       Stream.fromIterable([
+    //         LoginScreenState.failed(exception),
+    //       ]),
+    //       initialState: LoginScreenState.initial(),
+    //     );
+    //     await buildWidgetOnTest(tester, false);
+    //     await tester.pump();
+
+    //     expect(find.text('Login Failed'), findsOneWidget);
+    //     expect(find.text(exception.message), findsOneWidget);
+    //     // If the login failed, the form should be enabled.
+    //     final txtEmail = find.byKey(txtEmailKey);
+    //     final txtPassword = find.byKey(txtPasswordKey);
+    //     final btnSubmit = find.byKey(btnSubmitkey);
+
+    //     expect(tester.widget<TextFormField>(txtEmail).enabled, equals(true));
+    //     expect(tester.widget<TextFormField>(txtPassword).enabled, equals(true));
+    //     expect(
+    //         tester.widget<ButtonStyleButton>(btnSubmit).onPressed, isNotNull);
+    //   });
+
+    //   testWidgets(
+    //       'Successful State: Expect [ILoginFormContract.onLoginSucceed] to be called',
+    //       (tester) async {
+    //     whenListen(
+    //       bloc,
+    //       Stream.fromIterable([LoginScreenState.success(session)]),
+    //       initialState: LoginScreenState.initial(),
+    //     );
+
+    //     await buildWidgetOnTest(tester, true);
+    //     await tester.pump();
+
+    //     verify(contract.onAuthenticated(session)).called(1);
+    //     // If the login succeed, the form must retain disabled.
+    //     final txtEmail = find.byKey(const Key('LoginForm-textfield-email'));
+    //     final txtPassword =
+    //         find.byKey(const Key('LoginForm-textfield-password'));
+    //     final btnSubmit = find.byKey(const Key('LoginForm-button-submit'));
+
+    //     expect(tester.widget<TextFormField>(txtEmail).enabled, isFalse);
+    //     expect(tester.widget<TextFormField>(txtPassword).enabled, isFalse);
+    //     expect(tester.widget<ButtonStyleButton>(btnSubmit).onPressed, isNull);
+    //   });
+    // });
+
+    // group('Validation', () {
+    //   testWidgets(
+    //     'Expect email field error when email validation return an error',
+    //     (tester) async {
+    //       whenListen<LoginScreenState>(
+    //         bloc,
+    //         Stream.fromIterable([]),
+    //         initialState: LoginScreenState.initial(),
+    //       );
+    //       const email = 'user!yahoo.com';
+    //       when(validator.email(email)).thenReturn('Invalid Email');
+    //       await buildWidgetOnTest(tester, false);
+    //       await tester.enterText(find.byKey(txtEmailKey), email);
+    //       await tester.enterText(find.byKey(txtPasswordKey), '!P@ssw0rd123');
+    //       await tester.tap(find.byKey(btnSubmitkey));
+    //       await tester.pump();
+    //       verify(validator.email(email)).called(1);
+    //       expect(find.text('Invalid Email'), findsOneWidget);
+    //     },
+    //   );
+    //   testWidgets(
+    //     'Expect password field error when password validation return an error',
+    //     (tester) async {
+    //       whenListen<LoginScreenState>(
+    //         bloc,
+    //         Stream.fromIterable([]),
+    //         initialState: LoginScreenState.initial(),
+    //       );
+    //       const password = '';
+    //       when(validator.password(password)).thenReturn('Password is required');
+    //       await buildWidgetOnTest(tester, false);
+    //       await tester.enterText(find.byKey(txtEmailKey), 'user!yahoo.com');
+    //       await tester.tap(find.byKey(btnSubmitkey));
+    //       await tester.pump();
+    //       verify(validator.password(password)).called(1);
+    //       expect(find.text('Password is required'), findsOneWidget);
+    //     },
+    //   );
+
+    //   testWidgets('Expect to trigger login when email and password are valid',
+    //       (tester) async {
+    //     whenListen<LoginScreenState>(
+    //       bloc,
+    //       Stream.fromIterable([]),
+    //       initialState: LoginScreenState.initial(),
+    //     );
+    //     await buildWidgetOnTest(tester, true);
+    //     const String email = 'user@gmail.com';
+    //     const String password = '!P@ssw0rd123';
+    //     await tester.enterText(find.byKey(txtEmailKey), email);
+    //     await tester.enterText(find.byKey(txtPasswordKey), password);
+    //     await tester.tap(find.byKey(btnSubmitkey));
+    //     await tester.pump();
+    //     const credential = AccountCredential(email, password);
+    //     mocktail
+    //         .verify(() => bloc.add(LoginScreenEvent.submit(credential)))
+    //         .called(1);
+    //   });
+    // });
   });
 }

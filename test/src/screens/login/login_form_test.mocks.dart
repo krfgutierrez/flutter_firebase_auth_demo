@@ -54,9 +54,9 @@ class _FakeLoginScreenState_1 extends _i1.SmartFake
 class MockILoginFormContract extends _i1.Mock
     implements _i4.ILoginFormContract {
   @override
-  void onLoginSucceed(_i2.UserSession? session) => super.noSuchMethod(
+  void onAuthenticated(_i2.UserSession? session) => super.noSuchMethod(
         Invocation.method(
-          #onLoginSucceed,
+          #onAuthenticated,
           [session],
         ),
         returnValueForMissingStub: null,
